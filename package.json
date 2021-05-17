@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && Xcopy /S /I /E \"C:\\Users\\kim_f\\Documents\\fullstackopen\\part2\\phonebook\\build\" \"C:\\Users\\kim_f\\Documents\\fullstackopen_part_3\\build\"",
+    "deploy": "git push heroku main",
+    "deploy:full": "npm run build:ui && git add .&& git commit -m uibuild && git push && npm run deploy",
+    "logs:prod":"heroku logs --tail"
   },
   "author": "Fabio Kim",
   "license": "MIT",
