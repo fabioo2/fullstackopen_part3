@@ -10,7 +10,7 @@
     "build:ui": "rm -rf build && cd ../fullstackopen/part2/phonebook && npm run build --prod && Xcopy /S /I /E \"C:\\Users\\kim_f\\Documents\\fullstackopen\\part2\\phonebook\\build\" \"C:\\Users\\kim_f\\Documents\\fullstackopen_part_3\\build\"",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
-    "logs:prod":"heroku logs --tail"
+    "logs:prod": "heroku logs --tail"
   },
   "author": "Fabio Kim",
   "license": "MIT",
@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.10",
+    "morgan": "^1.10.0"
   }
 }
