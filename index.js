@@ -57,11 +57,14 @@ app.delete('/api/persons/:id', (request, response) => {
 });
 
 app.get('/info', (req, res) => {
-    const entries = persons.length;
     const timestamp = new Date();
-    res.send(
-        `Phonebook has info for ${entries} people <br><br> ${timestamp}`
-    );
+    Person.countDocuments((error, count) => {
+        res.send(
+            `Phonebook has entries for ${count} people <br><br> ${timestamp}`
+        );
+    }).catch((error) => {
+        next(error);
+    });
 });
 
 app.post('/api/persons/', (request, response) => {
