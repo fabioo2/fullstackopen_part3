@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/persons/60aad2b1fcd899235471c546
+Content-Type: application/json 
+
+{
+    "name": "Haemin Park",
+    "phoneNumber": "226-504-0924"
+}
