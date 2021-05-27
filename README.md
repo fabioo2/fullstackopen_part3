@@ -1,1 +1,1 @@
-link to heroku: https://fsp-phonebook.herokuapp.com/api/persons
+link to heroku: https://fsp-phonebook.herokuapp.com
