@@ -4,7 +4,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 const Person = require('./models/persons');
-const { response } = require('express');
 
 app.use(express.json());
 app.use(cors());
@@ -20,7 +19,7 @@ const errorHandler = (error, request, response, next) => {
     }
 };
 
-morgan.token('body', (req, res) => JSON.stringify(req.body));
+morgan.token('body', (req) => JSON.stringify(req.body));
 morgan.token(
     'custom',
     'Method: :method \nPath: :url \nStatus: :status  \nResponse: :res[content-length] - :response-time ms \nBody: :body \n---'
@@ -49,16 +48,15 @@ app.get('/api/persons/:id', (request, response, next) => {
         });
 });
 
-app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id);
+app.delete('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndRemove(request.params.id)
-        .then((result) => {
+        .then(() => {
             response.status(204).end();
         })
         .catch((error) => next(error));
 });
 
-app.get('/info', (req, res) => {
+app.get('/info', (req, res, next) => {
     const timestamp = new Date();
     Person.countDocuments((error, count) => {
         res.send(
